@@ -9,7 +9,7 @@ namespace Linq
             var persons = GetPersons();
         }
 
-        private static IEnumerable<Person> GetPersons()
+        private static List<Person> GetPersons()
         {
             return new List<Person>
                 {
