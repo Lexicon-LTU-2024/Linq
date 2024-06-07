@@ -8,7 +8,7 @@ namespace Linq
         static void Main(string[] args)
         {
             var persons = GetPersons();
-            persons.ForEach(p => Do(p));
+           // persons.ForEach(p => Do(p));
 
             foreach (var p in persons)
             {
@@ -17,15 +17,25 @@ namespace Linq
 
             var p2 = persons.ToArray();
 
-            var res = p2.OurersWhere(p => p.Age > 30);
+            var res = p2.OurersWhere<Person>(IsOver30);
+            var res3 = p2.OurersWhere<Person>(p =>  IsOver30(p));
             var res2 = p2.Where(p => p.Age > 30);
+
+
+            var res4 = p2.Where(p => p.Name == "Nisse")
+                         .Select(p => new PersonDto{FirstName = p.Name,NamesLength = p.Name.Length})
+                         .ToList();
+
+            Console.WriteLine(res4[0].NamesLength);
+            res4.ForEach(p => Console.WriteLine(p.FirstName));
+
 
 
         }
 
-        private static void Do(Person p)
+        private static bool IsOver30(Person p)
         {
-            //
+            return p.Age > 30;
         }
 
         private static List<Person> GetPersons()
