@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Channels;
 
 namespace Linq
 {
@@ -7,6 +8,19 @@ namespace Linq
         static void Main(string[] args)
         {
             var persons = GetPersons();
+            persons.ForEach(p => Do(p));
+
+            foreach (var p in persons)
+            {
+                Console.WriteLine(p);
+            }
+
+
+        }
+
+        private static void Do(Person p)
+        {
+            //
         }
 
         private static List<Person> GetPersons()
