@@ -15,6 +15,11 @@ namespace Linq
                 Console.WriteLine(p);
             }
 
+            var p2 = persons.ToArray();
+
+            var res = p2.OurersWhere(p => p.Age > 30);
+            var res2 = p2.Where(p => p.Age > 30);
+
 
         }
 
